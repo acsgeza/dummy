@@ -11,6 +11,11 @@ def factorial(n: int) -> int:
     return result
 
 
+def cube(n: int) -> int:
+    """Return n cubed."""
+    return n ** 3
+
+
 def main() -> None:
     if len(sys.argv) > 1:
         raw = sys.argv[1]
@@ -19,9 +24,15 @@ def main() -> None:
 
     try:
         n = int(raw)
+    except ValueError:
+        print(f"Error: '{raw}' is not a valid integer")
+        sys.exit(1)
+
+    print(f"{n}^3 = {cube(n)}")
+    try:
         print(f"{n}! = {factorial(n)}")
     except ValueError as e:
-        print(f"Error: {e}" if "negative" in str(e) else f"Error: '{raw}' is not a valid integer")
+        print(f"Error: {e}")
         sys.exit(1)
 
 
